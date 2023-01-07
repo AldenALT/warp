@@ -1,0 +1,36 @@
+:root {
+    --bg-color: hsl(250, 60%, 3%);
+    --primary-color: hsl(26, 86%, 47%);
+    --fg-color: #ffffff;
+    --font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+html {
+    background-color: var(--bg-color);
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+}
+
+table.table {
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+}
+
+table.table,
+table.table thead,
+table.table td,
+table.table th {
+    color: var(--fg-color);
+    border-color: var(--fg-color);
+    background-color: var(--bg-color);
+}
+
+table.table td
+{
+    border: 0;
+}

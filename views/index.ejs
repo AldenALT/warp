@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="darkreader-lock">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WARP+ Status</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/bulma_overwrite.css?t=1673057552688">
+    <link rel="stylesheet" href="/css/styles.css?t=1673057552688">
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <th>Thread</th>
+            <th>Total</th>
+            <th>Good</th>
+            <th>Bad</th>
+        </thead>
+        <tbody>
+            <% for (let thread of threads) { %>
+                <tr>
+                    <td>
+                        <%= thread.thread %>
+                    </td>
+                    <td>
+                        <%= thread.total %>
+                    </td>
+                    <td>
+                        <%= thread.good %>
+                    </td>
+                    <td>
+                        <%= thread.bad %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

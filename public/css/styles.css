@@ -2,6 +2,10 @@
     --bg-color: hsl(218, 80%, 2%);
     --primary-color: hsl(26, 86%, 47%);
     --fg-color: #ffffff;
+
+    --status-online: hsl(145, 70%, 45%);
+    --status-offline: hsl(359, 87%, 60%);
+
     --font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
@@ -30,7 +34,95 @@ table.table th {
     background-color: var(--bg-color);
 }
 
-table.table td
-{
+table.table a {
+    text-decoration: none;
+}
+
+table.table td {
     border: 0;
+}
+
+td.status,
+td.status a {
+    display: inline-flex;
+    flex-wrap: nowrap;
+}
+
+td.status i {
+    margin-right: 0.3rem;
+}
+
+td.status#online a {
+    color: var(--status-online);
+}
+
+td.status#offline a {
+    color: var(--status-offline);
+}
+
+td.status#offline .status-icon {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1));
+    border-radius: 20px
+}
+td.status#offline .status-icon::after,
+td.status#offline .status-icon::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 4px
+}
+td.status#offline .status-icon::after {
+    width: 6px;
+    height: 6px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    transform: rotate(-45deg);
+    left: 6px
+}
+td.status#offline .status-icon::before {
+    width: 2px;
+    height: 10px;
+    left: 8px;
+    background: currentColor
+}
+
+
+td.status#online .status-icon {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    transform: scale(var(--ggs,1));
+    border-radius: 20px
+}
+td.status#online .status-icon::after,
+td.status#online .status-icon::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 4px
+}
+td.status#online .status-icon::after {
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    transform: rotate(45deg);
+    left: 6px
+}
+td.status#online .status-icon::before {
+    width: 2px;
+    height: 10px;
+    left: 8px;
+    background: currentColor
 }

@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const axios = require("axios");
 const { config } = require("dotenv");
 config();
 
@@ -48,10 +49,21 @@ app.get("/", async (req, res) => {
         if (!packet.Thread) return;
 
         const thread = packet.Thread;
+        let status;
+
+        try {
+            const res = await axios.get(
+                `https://warp-plus-${thread}.aldenalt.repl.co/`
+            );
+            status = res.status;
+        } catch (err) {
+            status = err?.response?.status;
+        }
 
         if (threads[thread] === undefined) {
             threads[thread] = {
                 thread: packet.Thread,
+                status: status,
                 good: packet.good,
                 bad: packet.bad,
                 total: packet.good + packet.bad,

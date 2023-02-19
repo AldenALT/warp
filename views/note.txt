@@ -1,0 +1,16 @@
+
+<% if (thread.status===200) {%>
+    <td class="status" id="online">
+        <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
+            <i class="status-icon"></i>
+            <%= thread.status %>
+        </a>
+    </td>
+    <% } else { %>
+        <td class="status" id="offline">
+            <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
+                <i class="status-icon"></i>
+                <%= thread.status %>
+            </a>
+        </td>
+        <% } %>

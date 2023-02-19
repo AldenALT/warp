@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WARP+ Status</title>
     <link href='https://css.gg/css' rel='stylesheet'>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/get_status.js"></script>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/bulma_overwrite.css?t=1673057552688">
     <link rel="stylesheet" href="/css/styles.css?t=1673057552688">
@@ -20,13 +22,13 @@
             <th>Total</th>
             <th>Good</th>
             <th>Bad</th>
-            <th>Status</th>
+            <th>Server Status</th>
         </thead>
         <tbody>
             <% for (let thread of threads) { %>
-                <tr>
+                <tr class="tr-thread" id="thread-<%= thread.thread %>">
                     <td>
-                        <%= thread.thread %>
+                        warp-plus-<%= thread.thread %>
                     </td>
                     <td>
                         <%= thread.total %>
@@ -37,21 +39,12 @@
                     <td>
                         <%= thread.bad %>
                     </td>
-                    <% if (thread.status===200) {%>
-                        <td class="status" id="online">
-                            <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
-                                <i class="status-icon"></i>
-                                <%= thread.status %>
-                            </a>
-                        </td>
-                        <% } else { %>
-                            <td class="status" id="offline">
-                                <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
-                                    <i class="status-icon"></i>
-                                    <%= thread.status %>
-                                </a>
-                            </td>
-                            <% } %>
+                    <td class="status" id="loading">
+                        <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
+                            <i class="status-icon"></i>
+                            <span>Waiting...</span>
+                        </a>
+                    </td>
                 </tr>
                 <% } %>
                     <tr>
@@ -70,5 +63,7 @@
         </tbody>
     </table>
 </body>
+
+
 
 </html>

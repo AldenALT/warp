@@ -50,19 +50,6 @@ app.get("/", async (req, res) => {
     const collection = client.db("test").collection("Thread");
     const packets = await collection.find({}).toArray();
 
-    // const packets = [
-    //     { Thread: 1, good: 1, bad: 1 },
-    //     { Thread: 2, good: 2, bad: 2 },
-    //     { Thread: 3, good: 2, bad: 2 },
-    //     { Thread: 4, good: 2, bad: 2 },
-    //     { Thread: 5, good: 2, bad: 2 },
-    //     { Thread: 6, good: 2, bad: 2 },
-    //     { Thread: 7, good: 2, bad: 2 },
-    //     { Thread: 8, good: 2, bad: 2 },
-    //     { Thread: 9, good: 2, bad: 2 },
-    //     { Thread: 10, good: 2, bad: 2 },
-    // ];
-
     let threads = [];
     let total = { total: 0, good: 0, bad: 0 };
 
@@ -70,8 +57,9 @@ app.get("/", async (req, res) => {
         if (!packet.Thread) return;
 
         const thread = packet.Thread;
-        let status;
 
+        //* We do the check on public/javascripts/get_status.js
+        // let status;
         // try {
         //     const res = await axios.get(
         //         `https://warp-plus-${thread}.aldenalt.repl.co/`
@@ -84,7 +72,7 @@ app.get("/", async (req, res) => {
         if (threads[thread] === undefined) {
             threads[thread] = {
                 thread: packet.Thread,
-                status: status,
+                // status: status,
                 good: packet.good,
                 bad: packet.bad,
                 total: packet.good + packet.bad,
@@ -96,9 +84,21 @@ app.get("/", async (req, res) => {
         }
     }
 
+    let referrer = undefined;
+
+    try {
+        const res = await axios.get(
+            "https://raw.githubusercontent.com/AldenizenMC/warp-plus/main/config/REFERRAL.txt"
+        );
+        referrer = res.data;
+    } catch (err) {
+        referrer = undefined;
+    }
+
     res.render("index", {
         threads: threads.filter((n) => n),
         total: total,
+        referrer: referrer,
     });
 });
 

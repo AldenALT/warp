@@ -16,19 +16,25 @@
 </head>
 
 <body>
+    <div class="container">
+        <h3 class="referrer-label">
+            Referrer:</h3>
+        <pre class="referrer"><%= referrer %></pre>
+
+    </div>
     <table class="table">
         <thead>
             <th>Thread ID</th>
             <th>Total</th>
             <th>Good</th>
             <th>Bad</th>
-            <th>Server Status</th>
+            <th>Status</th>
         </thead>
         <tbody>
             <% for (let thread of threads) { %>
                 <tr class="tr-thread" id="thread-<%= thread.thread %>">
                     <td>
-                        warp-plus-<%= thread.thread %>
+                        Thread <%= thread.thread %>
                     </td>
                     <td>
                         <%= thread.total %>
@@ -42,7 +48,7 @@
                     <td class="status" id="loading">
                         <a href="https://warp-plus-<%= thread.thread %>.aldenalt.repl.co/">
                             <i class="status-icon"></i>
-                            <span>Waiting...</span>
+                            <span>???</span>
                         </a>
                     </td>
                 </tr>

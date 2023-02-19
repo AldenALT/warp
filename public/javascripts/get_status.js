@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             `tr.tr-thread#${thread.id} > td.status > a > span`
         )[0];
 
-        statusTextElement.innerHTML = `Connecting...`;
+        statusTextElement.innerHTML = `...`;
 
         let status;
 
